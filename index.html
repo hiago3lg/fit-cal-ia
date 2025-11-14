@@ -1,179 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fit Cal IA — Seu Site Fitness</title>
-  <meta name="description" content="Fit Cal IA — calorias, perda de peso rápida, dicas e planos de assinatura." />
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site com Firebase Auth e Calculadora</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input, select, button { display: block; margin: 10px 0; padding: 8px; width: 200px; }
+    #exclusiveContent { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ccc; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="lang-wrap">
-      <select id="langSwitcher" aria-label="Escolher idioma">
-        <option value="pt">🇧🇷 Português</option>
-        <option value="en">🇺🇸 English</option>
-        <option value="es">🇪🇸 Español</option>
+
+  <h2>Cadastro</h2>
+  <form id="registerForm">
+    <input type="email" id="registerEmail" placeholder="Email" required />
+    <input type="password" id="registerPassword" placeholder="Senha" required />
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="email" id="loginEmail" placeholder="Email" required />
+    <input type="password" id="loginPassword" placeholder="Senha" required />
+    <button type="submit">Entrar</button>
+  </form>
+
+  <button id="logoutButton">Sair</button>
+
+  <div id="exclusiveContent">
+    <h2>Bem-vindo à área exclusiva!</h2>
+
+    <div id="calorieCalculator">
+      <h3>Calculadora de Calorias</h3>
+
+      <label for="weight">Peso (kg):</label>
+      <input type="number" id="weight" placeholder="Ex: 70" required>
+
+      <label for="height">Altura (cm):</label>
+      <input type="number" id="height" placeholder="Ex: 170" required>
+
+      <label for="age">Idade:</label>
+      <input type="number" id="age" placeholder="Ex: 25" required>
+
+      <label for="gender">Gênero:</label>
+      <select id="gender">
+        <option value="male">Masculino</option>
+        <option value="female">Feminino</option>
       </select>
+
+      <label for="activity">Nível de Atividade:</label>
+      <select id="activity">
+        <option value="1.2">Sedentário</option>
+        <option value="1.375">Leve</option>
+        <option value="1.55">Moderado</option>
+        <option value="1.725">Intenso</option>
+        <option value="1.9">Muito intenso</option>
+      </select>
+
+      <button id="calculateBtn">Calcular Calorias</button>
+      <p id="result"></p>
     </div>
-
-    <header class="site-header">
-      <div class="brand">
-        <div class="logo">FC</div>
-        <div class="brand-text">
-          <div class="title">Fit Cal IA</div>
-          <div class="subtitle">Calorias, dieta e performance</div>
-        </div>
-      </div>
-
-      <nav class="main-nav">
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#planos">Planos</a>
-        <a href="#contato">Contato</a>
-      </nav>
-
-      <button class="nav-toggle" aria-label="Abrir menu">☰</button>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="hero-left">
-          <h1 id="hero-title">Alcance seus objetivos com a Fit Cal IA</h1>
-          <p id="hero-sub">Conteúdo inteligente sobre calorias, perda de peso rápida e dicas práticas para transformar seu corpo.</p>
-          <a href="#contato" class="btn">Assine agora</a>
-
-          <div class="features cards">
-            <div class="card">
-              <h3>🏋️ Treinos orientados</h3>
-              <p class="muted">Rotinas curtas e efetivas para perder gordura.</p>
-            </div>
-            <div class="card">
-              <h3>🍎 Nutrição inteligente</h3>
-              <p class="muted">Contagem de calorias e receitas práticas.</p>
-            </div>
-            <div class="card">
-              <h3>🤖 IA & Personalização</h3>
-              <p class="muted">Planos adaptativos conforme seus resultados.</p>
-            </div>
-          </div>
-        </div>
-
-        <aside class="hero-right card">
-          <img src="images/hero-gym.jpg" alt="Treino na academia" class="hero-img">
-          <h3>Serviços</h3>
-          <ul class="muted">
-            <li>Planos de assinatura</li>
-            <li>Consultoria nutricional</li>
-            <li>Programas de treino</li>
-            <li>Suporte e acompanhamento</li>
-          </ul>
-          <small class="muted">Preços e prazos variam conforme escopo.</small>
-        </aside>
-      </section>
-
-      <section id="sobre" class="section card">
-        <h2>Sobre Fit Cal IA</h2>
-        <p class="muted">A Fit Cal IA combina ciência de calorias com inteligência artificial para gerar planos simples e eficazes — focados em perda de gordura, manutenção e performance.</p>
-      </section>
-
-      <section id="servicos" class="section">
-        <h2>O que oferecemos</h2>
-        <div class="grid-portfolio">
-          <div class="item card">
-            <img src="images/food.jpg" alt="Alimentação saudável">
-            <strong>Alimentação</strong>
-            <div class="muted">Receitas e controle de calorias</div>
-          </div>
-          <div class="item card">
-            <img src="images/functional.jpg" alt="Treino funcional">
-            <strong>Treinos</strong>
-            <div class="muted">Programas HIIT e força</div>
-          </div>
-          <div class="item card">
-            <img src="images/weights.jpg" alt="Musculação">
-            <strong>Força</strong>
-            <div class="muted">Musculação e progressão segura</div>
-          </div>
-          <div class="item card">
-            <img src="images/performance.jpg" alt="Corpo e performance">
-            <strong>Performance</strong>
-            <div class="muted">Monitoramento e ajustes</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="planos" class="section card">
-        <h2 id="planos-title">Planos & Assinaturas</h2>
-        <div class="cards plans">
-          <div class="card plan">
-            <h3>Plano Básico</h3>
-            <p class="muted">Ideal para iniciantes — plano simples e econômico.</p>
-            <ul class="muted">
-              <li>Conteúdo semanal</li>
-              <li>1 programa</li>
-              <li>Suporte via e-mail</li>
-            </ul>
-            <div class="price" id="price-basic">R$ 29,00</div>
-            <a class="btn btn-secondary" href="#contato">Assinar</a>
-          </div>
-
-          <div class="card plan featured">
-            <h3>Plano Profissional</h3>
-            <p class="muted">Melhor custo-benefício.</p>
-            <ul class="muted">
-              <li>Até 5 programas</li>
-              <li>Avaliação de dieta</li>
-              <li>Suporte prioritário</li>
-            </ul>
-            <div class="price" id="price-pro">R$ 59,00</div>
-            <a class="btn" href="#contato">Assinar</a>
-          </div>
-
-          <div class="card plan">
-            <h3>Plano Premium</h3>
-            <p class="muted">Para quem busca acompanhamento completo.</p>
-            <ul class="muted">
-              <li>Plano personalizado</li>
-              <li>Consultoria e integrações</li>
-              <li>Atualizações ilimitadas</li>
-            </ul>
-            <div class="price" id="price-premium">R$ 129,00</div>
-            <a class="btn btn-secondary" href="#contato">Assinar</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="contato" class="section card contact-section">
-        <h2>Contato</h2>
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-          <input type="text" id="name" placeholder="Seu nome" required>
-          <input type="email" id="email" placeholder="Seu e-mail" required>
-          <textarea id="message" rows="5" placeholder="Como podemos ajudar?" required></textarea>
-          <div class="row">
-            <button class="btn" type="submit">Enviar</button>
-            <small class="muted">ou envie por e‑mail para <a href="mailto:contato@fitcalia.com">contato@fitcalia.com</a></small>
-          </div>
-        </form>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div>© <span id="year"></span> Fit Cal IA — Todos os direitos reservados</div>
-      <div class="muted">Feito com ♥ — Personalize como quiser</div>
-    </footer>
   </div>
 
-  <script src="script.js"></script><!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-
-<!-- Arquivo com sua config -->
-<script src="firebase.js"></script>
-
-<!-- Arquivo que vamos criar para login -->
-<script src="auth.js"></script>
-  
+  <script type="module" src="main.js"></script>
 </body>
 </html>
+
